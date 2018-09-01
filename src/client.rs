@@ -88,13 +88,9 @@ pub struct Client {
 }
 
 impl Client {
-    pub fn new(base: String, token: Option<String>) -> Client {
-        let mut base = base;
-        if !base.ends_with("/") {
-            base += "/";
-        }
+    pub fn new(base: &str, token: Option<String>) -> Client {
         Client {
-            base,
+            base: base.trim_right_matches('/').to_owned(),
             token,
             hc: hyper::Client::builder().keep_alive(true).build_http(),
         }

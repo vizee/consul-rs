@@ -21,7 +21,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let c = client::Client::new(String::from("http://127.0.0.1:8500"), None);
+        let c = client::Client::new("http://127.0.0.1:8500", None);
         hyper::rt::run(
             c.kv_get("test", None)
                 .map(|v| {
